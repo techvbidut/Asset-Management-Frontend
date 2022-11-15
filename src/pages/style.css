@@ -1,0 +1,16 @@
+
+.outerDiv{
+    margin:50px;
+}
+.tableEmp{
+    width: fit-content;
+    margin-top : 15px;
+    margin-left : 25px;
+    text-align-last: left;
+}
+
+.buttonGrp{
+    margin-top : 15px;
+    margin-left : 25px;
+    margin-bottom : 55px;
+}

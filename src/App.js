@@ -1,25 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
+import HomePage from './pages/Home';
+import ResourceList from './pages/Resources';
+import { AllServices } from './services/allServices';
+import { useEffect, useState } from 'react';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Employees from './pages/Employees';
 
 function App() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    AllServices.getAllEmployees().then((res) => {
+      console.log(res.data.data)
+      setData(res.data.data);
+    }).catch(err => console.log(err));
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div className="App">
+    //     <HomePage  data={data} />
+    // </div>
+    <BrowserRouter>
+      <HomePage />
+      <Routes>
+        <Route path="/" element={<Employees />} />
+        <Route path="/resources" element={<ResourceList />} />
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 
 export default App;
+
+const Child = () => {
+  return (
+    <div>
+      <h2> I am Child</h2>
+    </div>
+  )
+}
